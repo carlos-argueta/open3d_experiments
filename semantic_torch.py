@@ -126,7 +126,7 @@ pcd.colors = o3d.utility.Vector3dVector(colors) # Add color data to the point cl
 custom_draw_geometry(pcd)
 
 # Get one test point cloud from the custom dataset
-pc_idx = 800 # change the index to get a different point cloud
+pc_idx = 1 # change the index to get a different point cloud
 data, pcd = prepare_point_cloud_for_inference(custom_dataset[pc_idx])
 
 
