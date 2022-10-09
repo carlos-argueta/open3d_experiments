@@ -72,6 +72,30 @@ COLOR_MAP = {
     19: (0, 0, 255),
 }
 
+# ------ for custom data -------
+kitti_labels = {
+    0: 'unlabeled',
+    1: 'car',
+    2: 'bicycle',
+    3: 'motorcycle',
+    4: 'truck',
+    5: 'other-vehicle',
+    6: 'person',
+    7: 'bicyclist',
+    8: 'motorcyclist',
+    9: 'road',
+    10: 'parking',
+    11: 'sidewalk',
+    12: 'other-ground',
+    13: 'building',
+    14: 'fence',
+    15: 'vegetation',
+    16: 'trunk',
+    17: 'terrain',
+    18: 'pole',
+    19: 'traffic-sign'
+}
+
 # Convert class colors to doubles from 0 to 1, as expected by the visualizer
 for label in COLOR_MAP:
 	COLOR_MAP[label] = tuple(val/255 for val in COLOR_MAP[label])
@@ -106,7 +130,7 @@ if not os.path.exists(ckpt_path):
 pipeline.load_ckpt(ckpt_path=ckpt_path)
 
 # Get one test point cloud from the SemanticKitti dataset
-pc_idx = 58 # change the index to get a different point cloud
+pc_idx = 256 # change the index to get a different point cloud
 test_split = dataset.get_split("test")
 data = test_split.get_data(pc_idx)
 
@@ -126,7 +150,7 @@ pcd.colors = o3d.utility.Vector3dVector(colors) # Add color data to the point cl
 custom_draw_geometry(pcd)
 
 # Get one test point cloud from the custom dataset
-pc_idx = 1 # change the index to get a different point cloud
+pc_idx = 5 # change the index to get a different point cloud
 data, pcd = prepare_point_cloud_for_inference(custom_dataset[pc_idx])
 
 
